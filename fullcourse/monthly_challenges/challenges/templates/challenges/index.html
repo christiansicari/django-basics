@@ -1,0 +1,20 @@
+{%extends 'challenges/base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'challenges/challenges.css' %}">
+{% endblock %}
+{% block page_title %} list challenges {% endblock %}
+    {% block content %}
+        {% include 'challenges/includes/header.html' with active_page="index" %}
+
+    <ol>
+        {% for month, challenge in months.items %}
+            {% if challenge is not None %}
+                <li> <a href="{% url 'challenges:month_challenge' month %}"> {{month|title}}</a> </li>
+            {% else %}
+            <li> {{month|title}}</li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+    {% endblock %}
